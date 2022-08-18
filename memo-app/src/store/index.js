@@ -8,7 +8,8 @@ export default createStore({
     mutations: {
         save(state, newMemo) {
             newMemo.id = uuidv4()
+            newMemo.editing = false
             state.memos.unshift(newMemo)
-      }
+        }
   }
 });
