@@ -1,17 +1,19 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <MemoList />
+  <MemoForm />
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import MemoList from "./components/MemoList.vue";
+import MemoForm from "./components/MemoForm.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    MemoList,
+    MemoForm,
+  },
+};
 </script>
 
 <style>
@@ -20,7 +22,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #698aab;
   margin-top: 60px;
 }
 </style>
