@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h1>My Todos List</h1>
     <div v-bind:key="memo_item.id" v-for="memo_item in memo_items">
       <MemoItem v-bind:memo_item="memo_item"></MemoItem>
     </div>

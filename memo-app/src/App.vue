@@ -1,37 +1,31 @@
 <template>
-  <div>
+  <div id="app">
+    <h1>My Todos List</h1>
+    <AddMemo v-on:add-memo-event="addMemoMethod"></AddMemo>
     <MemosList v-bind:memo_items="memo_items" />
   </div>
 </template>
 
 <script>
 import MemosList from "./components/MemosList.vue";
+import AddMemo from "./components/AddMemo.vue";
+
 export default {
   name: "App",
   components: {
     MemosList,
+    AddMemo,
   },
   data() {
     return {
-      memo_items: [
-        {
-          id: 0,
-          title: "First Title",
-        },
-        {
-          id: 1,
-          title: "Second title",
-        },
-        {
-          id: 2,
-          title: "Third title",
-        },
-        {
-          id: 3,
-          title: "Fourth title",
-        },
-      ],
+      memo_items: [],
     };
+  },
+  methods: {
+    addMemoMethod(newMemo) {
+      this.memo_items.push(newMemo);
+      localStorage.setItem("memo_items", JSON.stringify(this.memo_items));
+    },
   },
 };
 </script>
