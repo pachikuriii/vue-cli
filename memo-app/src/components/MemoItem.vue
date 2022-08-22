@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>{{ memo_item.title }}</p>
+    <p>{{ memo_item.content }}</p>
   </div>
 </template>
 
