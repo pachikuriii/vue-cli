@@ -3,12 +3,14 @@
     <h1>My Memo</h1>
     <MemosList v-bind:memo_items="memo_items" />
     <AddMemo v-on:add-memo-event="addMemoMethod"></AddMemo>
+    <MakeMemo v-on:make-memo-event="makeMemoMethod" />
   </div>
 </template>
 
 <script>
 import MemosList from "./components/MemosList.vue";
 import AddMemo from "./components/AddMemo.vue";
+import MakeMemo from "./components/MakeMemo.vue";
 const STORAGE_KEY = "vue-memo";
 const todoStorage = {
   fetch: function () {
@@ -25,6 +27,7 @@ export default {
   components: {
     MemosList,
     AddMemo,
+    MakeMemo,
   },
   data() {
     return {
@@ -37,6 +40,10 @@ export default {
 
   methods: {
     addMemoMethod(newMemo) {
+      this.memo_items.push(newMemo);
+      todoStorage.save(this.memo_items);
+    },
+    makeMemoMethod(newMemo) {
       this.memo_items.push(newMemo);
       todoStorage.save(this.memo_items);
     },
