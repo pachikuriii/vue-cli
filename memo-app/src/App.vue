@@ -1,17 +1,37 @@
 <template>
-  <MemoList />
-  <MemoForm />
+  <div>
+    <MemosList v-bind:memo_items="memo_items" />
+  </div>
 </template>
 
 <script>
-import MemoList from "./components/MemoList.vue";
-import MemoForm from "./components/MemoForm.vue";
-
+import MemosList from "./components/MemosList.vue";
 export default {
   name: "App",
   components: {
-    MemoList,
-    MemoForm,
+    MemosList,
+  },
+  data() {
+    return {
+      memo_items: [
+        {
+          id: 0,
+          title: "First Title",
+        },
+        {
+          id: 1,
+          title: "Second title",
+        },
+        {
+          id: 2,
+          title: "Third title",
+        },
+        {
+          id: 3,
+          title: "Fourth title",
+        },
+      ],
+    };
   },
 };
 </script>
