@@ -6,7 +6,7 @@
       <div v-if="!this.editing"></div>
       <div v-else>
         <EditMemo
-          v-model="this.memo_item"
+          v-bind:memo_content="memo_content"
           @delete-memo-event="deleteMemoMethod"
           @doneedit-memo-event="doneEditMemoMethod"
         ></EditMemo>
@@ -44,7 +44,7 @@ export default {
       memo_items: [],
       editing: false,
       editing_id: "",
-      memo_item: "",
+      memo_content: "",
     };
   },
   mounted: function () {
@@ -57,15 +57,17 @@ export default {
       todoStorage.save(this.memo_items);
     },
     editMemoMethod(memo_item) {
-      this.memo_item = memo_item.content;
+      this.memo_content = memo_item.content;
       this.editing_id = memo_item.id;
       this.editing = true;
     },
-    doneEditMemoMethod(content, memo_item) {
-      this.memo_item = content;
-      console.log(content);
-      const index = this.memo_items.indexOf(memo_item);
-      this.memo_items[index].content = this.memo_item;
+    doneEditMemoMethod(content) {
+      const edititem = this.memo_items.find((v) => v.id === this.editing_id);
+      const index = this.memo_items.indexOf(edititem);
+      this.memo_items[index].content = content;
+      todoStorage.save(this.memo_items);
+      this.editing = false;
+      this.editing_id = "";
 
       todoStorage.save(this.memo_items);
       this.editing = false;
