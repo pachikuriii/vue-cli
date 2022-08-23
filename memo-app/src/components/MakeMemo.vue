@@ -18,6 +18,7 @@ export default {
       const newMemo = {
         content: "新規メモ",
         id: uuidv4(),
+        editing: false,
       };
       //send to parent
       this.$emit("make-memo-event", newMemo);
