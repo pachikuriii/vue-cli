@@ -1,6 +1,6 @@
 <template>
   <div @click="doedit">
-    <p>{{ memo_item.content }}</p>
+    <p>{{ firstLine }}</p>
   </div>
 </template>
 
@@ -8,6 +8,11 @@
 export default {
   name: "MemoItem",
   props: ["memo_item"],
+  computed: {
+    firstLine: function () {
+      return this.memo_item.content.split("\n")[0];
+    },
+  },
   methods: {
     doedit() {
       this.$emit("editMemo", this.memo_item);
