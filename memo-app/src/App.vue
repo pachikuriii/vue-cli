@@ -55,6 +55,9 @@ export default {
     makeMemoMethod(newMemo) {
       this.memo_items.push(newMemo);
       todoStorage.save(this.memo_items);
+      this.memo_content = newMemo.content;
+      this.editing_id = newMemo.id;
+      this.editing = true;
     },
     editMemoMethod(memo_item) {
       this.memo_content = memo_item.content;
