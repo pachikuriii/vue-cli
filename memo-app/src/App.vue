@@ -1,18 +1,23 @@
 <template>
   <div id="app">
     <h1>Memo</h1>
-    <MemoList v-bind:memo_items="memo_items" @editMemo="editMemo" />
-    <div>
-      <div v-if="!this.editing"></div>
-      <div v-else>
-        <EditMemo
-          v-bind:memo_content="memo_content"
-          @delete-event="deleteMemo"
-          @doneedit-event="doneEditMemo"
-        />
+    <div class="memo-wrapper">
+      <div class="left">
+        <MemoList v-bind:memo_items="memo_items" @editMemo="editMemo" />
+        <AddMemo @add-event="addMemo" />
+      </div>
+
+      <div class="right">
+        <div v-if="!this.editing"></div>
+        <div v-else>
+          <EditMemo
+            v-bind:memo_content="memo_content"
+            @delete-event="deleteMemo"
+            @doneedit-event="doneEditMemo"
+          />
+        </div>
       </div>
     </div>
-    <AddMemo @add-event="addMemo" />
   </div>
 </template>
 
@@ -89,7 +94,24 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #698aab;
+  color: #7a4171;
   margin-top: 60px;
+}
+
+h1 {
+  margin-bottom: 60px;
+}
+.memo-wrapper {
+  display: flex;
+  width: 50%;
+  margin: auto;
+}
+
+.left {
+  width: 50%;
+}
+
+.right {
+  width: 50%;
 }
 </style>

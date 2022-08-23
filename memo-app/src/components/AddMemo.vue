@@ -25,3 +25,14 @@ export default {
   },
 };
 </script>
+<style scoped>
+button {
+  color: #ffffff;
+  background-color: #7a4171;
+  border: none;
+}
+
+.buttons {
+  margin-top: 1em;
+}
+</style>
