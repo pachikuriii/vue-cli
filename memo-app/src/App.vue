@@ -3,11 +3,12 @@
     <h1>My Memo</h1>
     <MemosList v-bind:memo_items="memo_items" @catchMessage="editMemoMethod" />
     <div>
-      <div v-if="!this.edit"></div>
+      <div v-if="!this.editing"></div>
       <div v-else>
         <EditMemo
-          @edit-memo-event="editMemoMethod"
+          v-model="this.memo_item"
           @delete-memo-event="deleteMemoMethod"
+          @doneedit-memo-event="doneEditMemoMethod"
         ></EditMemo>
       </div>
     </div>
@@ -41,7 +42,9 @@ export default {
   data() {
     return {
       memo_items: [],
-      edit: false,
+      editing: false,
+      editing_id: "",
+      memo_item: "",
     };
   },
   mounted: function () {
@@ -49,29 +52,34 @@ export default {
   },
 
   methods: {
-    addMemoMethod(newMemo) {
-      this.memo_items.push(newMemo);
-      todoStorage.save(this.memo_items);
-    },
     makeMemoMethod(newMemo) {
       this.memo_items.push(newMemo);
       todoStorage.save(this.memo_items);
     },
     editMemoMethod(memo_item) {
-      memo_item.editing = true;
-      this.edit = true;
+      this.memo_item = memo_item.content;
+      this.editing_id = memo_item.id;
+      this.editing = true;
     },
-    doneEditMemoMethod() {
-      this.edit = false;
-      todoStorage.save(this.todos);
-    },
-    deleteMemoMethod(memo_item) {
+    doneEditMemoMethod(content, memo_item) {
+      this.memo_item = content;
+      console.log(content);
       const index = this.memo_items.indexOf(memo_item);
+      this.memo_items[index].content = this.memo_item;
+
+      todoStorage.save(this.memo_items);
+      this.editing = false;
+    },
+    deleteMemoMethod() {
+      const deleteitem = this.memo_items.find((v) => v.id === this.editing_id);
+      const index = this.memo_items.indexOf(deleteitem);
       const check = confirm("本当に削除しますか？");
       if (check === true) {
         this.memo_items.splice(index, 1);
       }
       todoStorage.save(this.memo_items);
+      this.editing = false;
+      this.editing_id = "";
     },
   },
   created: function () {
