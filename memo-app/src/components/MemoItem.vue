@@ -10,7 +10,7 @@ export default {
   props: ["memo_item"],
   methods: {
     doedit() {
-      this.$emit("catchMessage", this.memo_item);
+      this.$emit("editMemo", this.memo_item);
     },
   },
 };

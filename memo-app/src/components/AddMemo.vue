@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button @click="doadd">新規作成</button>
+    <button @click="doadd">+</button>
   </div>
 </template>
 
@@ -20,7 +20,7 @@ export default {
         id: uuidv4(),
       };
       //send to parent
-      this.$emit("make-memo-event", newMemo);
+      this.$emit("add-event", newMemo);
     },
   },
 };

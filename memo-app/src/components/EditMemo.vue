@@ -17,11 +17,11 @@ export default {
   },
   methods: {
     doedit() {
-      this.$emit("doneedit-memo-event", this.content);
+      this.$emit("doneedit-event", this.content);
       this.content = "";
     },
     dodelete() {
-      this.$emit("delete-memo-event");
+      this.$emit("delete-event");
     },
   },
 };

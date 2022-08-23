@@ -1,49 +1,47 @@
 <template>
   <div id="app">
-    <h1>My Memo</h1>
-    <MemosList v-bind:memo_items="memo_items" @catchMessage="editMemoMethod" />
+    <h1>Memo</h1>
+    <MemoList v-bind:memo_items="memo_items" @editMemo="editMemo" />
     <div>
       <div v-if="!this.editing"></div>
       <div v-else>
         <EditMemo
           v-bind:memo_content="memo_content"
-          @delete-memo-event="deleteMemoMethod"
-          @doneedit-memo-event="doneEditMemoMethod"
-        ></EditMemo>
+          @delete-event="deleteMemo"
+          @doneedit-event="doneEditMemo"
+        />
       </div>
     </div>
-
-    <MakeMemo v-on:make-memo-event="makeMemoMethod" />
+    <AddMemo @add-event="addMemo" />
   </div>
 </template>
 
 <script>
-import MemosList from "./components/MemosList.vue";
+import MemoList from "./components/MemoList.vue";
 import EditMemo from "./components/EditMemo.vue";
-import MakeMemo from "./components/MakeMemo.vue";
+import AddMemo from "./components/AddMemo.vue";
 const STORAGE_KEY = "vue-memo";
 const todoStorage = {
   fetch: function () {
-    const todos = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
-    return todos;
+    return JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
   },
-  save: function (todos) {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(todos));
+  save: function (memos) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(memos));
   },
 };
 
 export default {
   name: "App",
   components: {
-    MemosList,
+    MemoList,
     EditMemo,
-    MakeMemo,
+    AddMemo,
   },
   data() {
     return {
       memo_items: [],
       editing: false,
-      editing_id: "",
+      memo_id: "",
       memo_content: "",
     };
   },
@@ -52,39 +50,31 @@ export default {
   },
 
   methods: {
-    makeMemoMethod(newMemo) {
+    addMemo(newMemo) {
       this.memo_items.push(newMemo);
       todoStorage.save(this.memo_items);
       this.memo_content = newMemo.content;
-      this.editing_id = newMemo.id;
+      this.memo_id = newMemo.id;
       this.editing = true;
     },
-    editMemoMethod(memo_item) {
+    editMemo(memo_item) {
       this.memo_content = memo_item.content;
-      this.editing_id = memo_item.id;
+      this.memo_id = memo_item.id;
       this.editing = true;
     },
-    doneEditMemoMethod(content) {
-      const edititem = this.memo_items.find((v) => v.id === this.editing_id);
+    doneEditMemo(content) {
+      const edititem = this.memo_items.find((v) => v.id === this.memo_id);
       const index = this.memo_items.indexOf(edititem);
       this.memo_items[index].content = content;
       todoStorage.save(this.memo_items);
       this.editing = false;
-      this.editing_id = "";
-
-      todoStorage.save(this.memo_items);
-      this.editing = false;
     },
-    deleteMemoMethod() {
-      const deleteitem = this.memo_items.find((v) => v.id === this.editing_id);
+    deleteMemo() {
+      const deleteitem = this.memo_items.find((v) => v.id === this.memo_id);
       const index = this.memo_items.indexOf(deleteitem);
-      const check = confirm("本当に削除しますか？");
-      if (check === true) {
-        this.memo_items.splice(index, 1);
-      }
+      this.memo_items.splice(index, 1);
       todoStorage.save(this.memo_items);
       this.editing = false;
-      this.editing_id = "";
     },
   },
   created: function () {

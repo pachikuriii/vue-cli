@@ -3,7 +3,7 @@
     <div v-bind:key="memo_item.id" v-for="memo_item in memo_items">
       <MemoItem
         v-bind:memo_item="memo_item"
-        @catchMessage="editMemoMethod"
+        @editMemo="editMemoMethod"
       ></MemoItem>
     </div>
   </div>
@@ -12,14 +12,14 @@
 <script>
 import MemoItem from "./MemoItem.vue";
 export default {
-  name: "MemosList",
+  name: "MemoList",
   props: ["memo_items"],
   components: {
     MemoItem,
   },
   methods: {
     editMemoMethod(memo_item) {
-      this.$emit("catchMessage", memo_item);
+      this.$emit("editMemo", memo_item);
     },
   },
 };
