@@ -3,17 +3,17 @@
     <h1>Memo</h1>
     <div class="memo-wrapper">
       <div class="left">
-        <MemoList v-bind:memo_items="memo_items" @editMemo="editMemo" />
-        <AddMemo @add-event="addMemo" />
+        <MemoList v-bind:memo_items="memo_items" v-on:editMemo="editMemo" />
+        <MemoNewButton v-on:add-event="addMemo" />
       </div>
 
       <div class="right">
         <div v-if="!this.editing"></div>
         <div v-else>
-          <EditMemo
+          <MemoForm
             v-bind:memo_content="memo_content"
-            @delete-event="deleteMemo"
-            @doneedit-event="doneEditMemo"
+            v-on:delete-event="deleteMemo"
+            v-on:doneedit-event="doneEditMemo"
           />
         </div>
       </div>
@@ -23,8 +23,8 @@
 
 <script>
 import MemoList from "./components/MemoList.vue";
-import EditMemo from "./components/EditMemo.vue";
-import AddMemo from "./components/AddMemo.vue";
+import MemoForm from "./components/MemoForm.vue";
+import MemoNewButton from "./components/MemoNewButton.vue";
 const STORAGE_KEY = "vue-memo";
 const todoStorage = {
   fetch: function () {
@@ -39,8 +39,8 @@ export default {
   name: "App",
   components: {
     MemoList,
-    EditMemo,
-    AddMemo,
+    MemoForm,
+    MemoNewButton,
   },
   data() {
     return {

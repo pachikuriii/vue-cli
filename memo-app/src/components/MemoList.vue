@@ -1,21 +1,21 @@
 <template>
   <div>
     <div v-bind:key="memo_item.id" v-for="memo_item in memo_items">
-      <MemoItem
+      <MemoListItem
         v-bind:memo_item="memo_item"
-        @editMemo="editMemoMethod"
-      ></MemoItem>
+        v-on:editMemo="editMemoMethod"
+      ></MemoListItem>
     </div>
   </div>
 </template>
 
 <script>
-import MemoItem from "./MemoItem.vue";
+import MemoListItem from "./MemoListItem.vue";
 export default {
   name: "MemoList",
   props: ["memo_items"],
   components: {
-    MemoItem,
+    MemoListItem,
   },
   methods: {
     editMemoMethod(memo_item) {

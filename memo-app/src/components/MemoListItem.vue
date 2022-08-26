@@ -1,12 +1,12 @@
 <template>
-  <div @click="doedit">
+  <div v-on:click="doedit">
     <p>{{ firstLine }}</p>
   </div>
 </template>
 
 <script>
 export default {
-  name: "MemoItem",
+  name: "MemoListItem",
   props: ["memo_item"],
   computed: {
     firstLine: function () {

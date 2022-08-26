@@ -1,13 +1,13 @@
 <template>
   <div>
-    <button @click="doadd">+</button>
+    <button v-on:click="doadd">+</button>
   </div>
 </template>
 
 <script>
 import { v4 as uuidv4 } from "uuid";
 export default {
-  name: "AddMemo",
+  name: "MemoNewButton",
   methods: {
     doadd() {
       const newMemo = {
