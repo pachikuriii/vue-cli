@@ -68,14 +68,18 @@ export default {
       this.editing = true;
     },
     doneEditMemo(content) {
-      const edititem = this.memo_items.find((v) => v.id === this.memo_id);
+      const edititem = this.memo_items.find(
+        (memo_item) => memo_item.id === this.memo_id
+      );
       const index = this.memo_items.indexOf(edititem);
       this.memo_items[index].content = content;
       todoStorage.save(this.memo_items);
       this.editing = false;
     },
     deleteMemo() {
-      const deleteitem = this.memo_items.find((v) => v.id === this.memo_id);
+      const deleteitem = this.memo_items.find(
+        (memo_item) => memo_item.id === this.memo_id
+      );
       const index = this.memo_items.indexOf(deleteitem);
       this.memo_items.splice(index, 1);
       todoStorage.save(this.memo_items);
