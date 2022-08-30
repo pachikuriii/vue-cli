@@ -1,5 +1,5 @@
 <template>
-  <div v-on:click="doedit">
+  <div v-on:click="edit">
     <p>{{ firstLine }}</p>
   </div>
 </template>
@@ -14,7 +14,7 @@ export default {
     },
   },
   methods: {
-    doedit() {
+    edit() {
       this.$emit("editMemo", this.memo_item);
     },
   },

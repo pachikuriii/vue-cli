@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button v-on:click="doadd">+</button>
+    <button v-on:click="add">+</button>
   </div>
 </template>
 
@@ -9,7 +9,7 @@ import { v4 as uuidv4 } from "uuid";
 export default {
   name: "MemoNewButton",
   methods: {
-    doadd() {
+    add() {
       const newMemo = {
         content: "新規メモ",
         id: uuidv4(),

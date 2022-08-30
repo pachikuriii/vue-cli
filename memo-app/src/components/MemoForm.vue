@@ -2,8 +2,8 @@
   <div class="form-wrapper">
     <textarea v-model="content" type="text" rows="10" cols="40"></textarea>
     <div class="buttons">
-      <button v-on:click="doedit">編集</button>
-      <button v-on:click="dodelete">削除</button>
+      <button v-on:click="edit">編集</button>
+      <button v-on:click="remove">削除</button>
     </div>
   </div>
 </template>
@@ -18,11 +18,11 @@ export default {
     };
   },
   methods: {
-    doedit() {
+    edit() {
       this.$emit("doneedit-event", this.content);
       this.content = "";
     },
-    dodelete() {
+    remove() {
       this.$emit("delete-event");
     },
   },
