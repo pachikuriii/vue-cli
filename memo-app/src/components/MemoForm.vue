@@ -1,6 +1,12 @@
 <template>
   <div class="form-wrapper">
-    <textarea v-model="content" type="text" rows="10" cols="40"></textarea>
+    <textarea
+      placeholder="メモを入力してください"
+      v-model="content"
+      type="text"
+      rows="10"
+      cols="40"
+    ></textarea>
     <div class="buttons">
       <button v-on:click="edit">編集</button>
       <button v-on:click="remove">削除</button>

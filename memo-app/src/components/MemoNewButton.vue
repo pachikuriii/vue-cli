@@ -11,7 +11,7 @@ export default {
   methods: {
     add() {
       const newMemo = {
-        content: "新規メモ",
+        content: "",
         id: uuidv4(),
       };
       this.$emit("add-event", newMemo);
