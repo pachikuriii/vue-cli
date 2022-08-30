@@ -8,8 +8,8 @@
       cols="40"
     ></textarea>
     <div class="buttons">
-      <button v-on:click="edit">編集</button>
-      <button v-on:click="remove">削除</button>
+      <button @click="edit">編集</button>
+      <button @click="remove">削除</button>
     </div>
   </div>
 </template>

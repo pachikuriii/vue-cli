@@ -3,17 +3,17 @@
     <h1>Memo</h1>
     <div class="memo-wrapper">
       <div class="left">
-        <MemoList v-bind:memo_items="memo_items" v-on:editMemo="editMemo" />
-        <MemoNewButton v-on:add-event="addMemo" />
+        <MemoList :memo_items="memo_items" @editMemo="editMemo" />
+        <MemoNewButton @add-event="addMemo" />
       </div>
 
       <div class="right">
         <div v-if="!this.editing"></div>
         <div v-else>
           <MemoForm
-            v-bind:memo_content="memo_content"
-            v-on:delete-event="deleteMemo"
-            v-on:doneedit-event="doneEditMemo"
+            :memo_content="memo_content"
+            @delete-event="deleteMemo"
+            @doneedit-event="doneEditMemo"
           />
         </div>
       </div>

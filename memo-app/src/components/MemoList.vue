@@ -1,9 +1,9 @@
 <template>
   <div>
-    <div v-bind:key="memo_item.id" v-for="memo_item in memo_items">
+    <div :key="memo_item.id" v-for="memo_item in memo_items">
       <MemoListItem
-        v-bind:memo_item="memo_item"
-        v-on:editMemo="editMemoMethod"
+        :memo_item="memo_item"
+        @editMemo="editMemoMethod"
       ></MemoListItem>
     </div>
   </div>

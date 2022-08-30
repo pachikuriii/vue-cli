@@ -1,5 +1,5 @@
 <template>
-  <div v-on:click="edit">
+  <div @click="edit">
     <p>{{ firstLine }}</p>
   </div>
 </template>
