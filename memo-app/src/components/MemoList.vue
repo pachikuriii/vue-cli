@@ -2,7 +2,7 @@
   <div>
     <div :key="memo_item.id" v-for="memo_item in memo_items">
       <MemoListItem
-        :memo_item="memo_item"
+        :memoItem="memo_item"
         @editMemo="editMemoMethod"
       ></MemoListItem>
     </div>
@@ -13,7 +13,12 @@
 import MemoListItem from "./MemoListItem.vue";
 export default {
   name: "MemoList",
-  props: ["memo_items"],
+  props: ["memoItems"],
+  data() {
+    return {
+      memo_items: this.memoItems,
+    };
+  },
   components: {
     MemoListItem,
   },

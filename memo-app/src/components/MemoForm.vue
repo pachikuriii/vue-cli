@@ -17,10 +17,10 @@
 <script>
 export default {
   name: "MemoForm",
-  props: ["memo_content"],
+  props: ["memoContent"],
   data() {
     return {
-      content: this.memo_content,
+      content: this.memoContent,
     };
   },
   methods: {

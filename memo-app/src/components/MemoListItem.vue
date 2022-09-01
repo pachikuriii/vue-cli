@@ -7,15 +7,15 @@
 <script>
 export default {
   name: "MemoListItem",
-  props: ["memo_item"],
+  props: ["memoItem"],
   computed: {
     firstLine: function () {
-      return this.memo_item.content.split("\n")[0];
+      return this.memoItem.content.split("\n")[0];
     },
   },
   methods: {
     edit() {
-      this.$emit("editMemo", this.memo_item);
+      this.$emit("editMemo", this.memoItem);
     },
   },
 };

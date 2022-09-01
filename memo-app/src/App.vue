@@ -3,7 +3,7 @@
     <h1>Memo</h1>
     <div class="memo-wrapper">
       <div class="left">
-        <MemoList :memo_items="memo_items" @editMemo="editMemo" />
+        <MemoList :memoItems="memo_items" @editMemo="editMemo" />
         <MemoNewButton @add-event="addMemo" />
       </div>
 
@@ -11,7 +11,7 @@
         <div v-if="!this.editing"></div>
         <div v-else>
           <MemoForm
-            :memo_content="memo_content"
+            :memoContent="memo_content"
             @delete-event="deleteMemo"
             @doneedit-event="doneEditMemo"
           />
